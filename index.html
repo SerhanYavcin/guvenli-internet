@@ -15,11 +15,16 @@
 
         /* --- YAZDIRMA STİLLERİ --- */
         @media print {
+            /* Arkaplan resimlerini ve renklerini yazdır */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
             /* Yazdırma sırasında butonu gizle */
             .no-print {
                 display: none !important;
             }
-            
 
             /* Yazdırma için genel sayfa ayarları */
             @page {
@@ -27,20 +32,38 @@
                 margin: 2cm;
             }
             
-            /* Yazdırırken gölgeleri ve arka planları temizle */
+            /* Sadece gölgeleri kaldır, arka planları koru */
             body, .container, section, div {
                 box-shadow: none !important;
-                border: none !important;
-                background: #fff !important;
+                /* background: #fff !important; <- Bu satırı kaldırdık */
             }
 
-            h1, h2, h3, h4, p, li {
+            /* Yazı renklerini siyah yap (okunabilirlik için) */
+            h1, h2, h3, h4 {
                 color: #000 !important;
+            }
+            
+            /* Paragraf ve liste yazılarını koyu gri yap */
+            p, li {
+                color: #333 !important;
+            }
+            
+            /* Renkli kutular için özel düzenleme */
+            .bg-blue-50, .bg-green-50, .bg-yellow-50, .bg-red-50, .bg-gray-50 {
+                border: 1px solid #ccc !important;
             }
         }
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8">
+    <!-- Yazdırma Talimatları -->
+    <div class="no-print bg-yellow-100 border border-yellow-400 rounded p-4 mb-4 text-center">
+        <p class="text-sm font-medium text-yellow-800 mb-2">📋 Yazdırma Önerisi</p>
+        <p class="text-xs text-yellow-700">En iyi sonuç için tarayıcınızın yazdırma ayarlarından <strong>"Arka plan grafikleri"</strong> seçeneğini aktif edin.</p>
+        <button onclick="window.print()" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded text-sm hover:bg-blue-600">
+            🖨️ Yazdır
+        </button>
+    </div>
 
     <div class="container mx-auto max-w-4xl bg-white rounded-lg shadow-lg p-8 sm:p-12 relative">
         <header class="text-center mb-10">
@@ -220,7 +243,7 @@
             <p class="leading-relaxed">Unutmayalım ki amacımız çocuklarımızı dijital dünyanın zenginliklerinden soyutlamak değil, aksine bu dünyada güvenle ve bilinçle var olmalarını sağlamaktır. Bu bir yasaklar listesi değil, bir yol haritasıdır. Sabırlı, anlayışlı ve rehberlik eden yaklaşımınız, onların teknolojiyi bir tehdit olarak değil, öğrenme, keşfetme ve eğlenmeleri için güçlü bir araç olarak görmelerini sağlayacaktır. Bu yolculukta göstereceğiniz ilgi ve tutarlılık, onların sorumlu birer dijital vatandaş olmalarının temelini atacaktır.</p>
             
             <!-- Lisans Bilgisi -->
-            <div class="mt-6 pt-4 border-t border-gray-200">
+            <div class="mt-6 pt-4 border-t border-gray-200 no-print">
                 <p class="text-sm text-gray-400 mb-2">© 2025 Güvenli İnternet Veli Rehberi</p>
                 <p class="text-xs text-gray-400">
                     Bu içerik <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" class="text-blue-500 hover:text-blue-600 underline">Creative Commons BY-NC-SA 4.0</a> lisansı altında sunulmaktadır.<br>
